@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emulating the Terraform Release Registry for OpenTofu — nitrocode</title>
+  <meta name="description" content="How a minimal static emulation of the Terraform release registry unblocked Go SDKs migrating to OpenTofu after the HashiCorp fork." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { mono: ['ui-monospace','SFMono-Regular','Menlo','Monaco','Consolas','monospace'] } } }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .prose-custom h2 { font-size: 1.5rem; font-weight: 700; color: #f1f5f9; margin-top: 2.5rem; margin-bottom: 1rem; }
+    .prose-custom h3 { font-size: 1.125rem; font-weight: 600; color: #e2e8f0; margin-top: 2rem; margin-bottom: 0.75rem; }
+    .prose-custom p  { color: #94a3b8; line-height: 1.8; margin-bottom: 1.25rem; }
+    .prose-custom a  { color: #38bdf8; text-decoration: underline; }
+    .prose-custom a:hover { color: #7dd3fc; }
+    .prose-custom ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .prose-custom ul li { color: #94a3b8; line-height: 1.8; margin-bottom: 0.25rem; }
+    .prose-custom blockquote { border-left: 3px solid #38bdf8; padding-left: 1.25rem; margin: 1.5rem 0; }
+    .prose-custom blockquote p { color: #cbd5e1; font-style: italic; }
+    .prose-custom code { font-family: ui-monospace, monospace; background: #1e293b; color: #38bdf8; padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.875rem; }
+    .prose-custom pre { background: #0f172a; border: 1px solid #1e293b; border-radius: 0.75rem; padding: 1.5rem; overflow-x: auto; margin: 1.5rem 0; }
+    .prose-custom pre code { background: transparent; padding: 0; color: #94a3b8; }
+    .prose-custom strong { color: #e2e8f0; font-weight: 600; }
+    .prose-custom hr { border-color: #1e293b; margin: 2.5rem 0; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased">
+
+  <!-- Nav -->
+  <nav class="fixed top-0 inset-x-0 z-50 bg-slate-950/80 backdrop-blur border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="/" class="font-mono text-sky-400 font-semibold tracking-tight text-lg">&gt; nitrocode</a>
+      <div class="flex items-center gap-6 text-sm font-medium text-slate-400">
+        <a href="/about/" class="hover:text-slate-100 transition-colors">About</a>
+        <a href="/blog/" class="hover:text-slate-100 transition-colors">Blog</a>
+        <a href="/projects/" class="hover:text-slate-100 transition-colors">Projects</a>
+        <a href="/resume/" class="hover:text-slate-100 transition-colors">Résumé</a>
+        <a href="https://github.com/nitrocode" target="_blank" rel="noopener" class="hover:text-slate-100 transition-colors">GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Article -->
+  <main class="pt-32 pb-24 px-6">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Breadcrumb -->
+      <nav class="mb-8 text-sm text-slate-500">
+        <a href="/blog/" class="hover:text-sky-400 transition-colors">← Blog</a>
+      </nav>
+
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-2 mb-6">
+        <span class="text-xs font-mono bg-slate-800 text-sky-400 px-2 py-1 rounded">Open Source</span>
+        <span class="text-xs font-mono bg-slate-800 text-sky-400 px-2 py-1 rounded">Infrastructure</span>
+        <span class="text-xs font-mono bg-slate-800 text-sky-400 px-2 py-1 rounded">SDK / API</span>
+        <span class="text-xs font-mono bg-slate-800 text-sky-400 px-2 py-1 rounded">Go</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-6">
+        Emulating the Terraform Release Registry for OpenTofu
+      </h1>
+      <p class="text-slate-400 text-lg mb-10 leading-relaxed">
+        After the HashiCorp / OpenTofu fork, Go SDKs and other language clients that calculated
+        binary download URLs from the Terraform version registry had no clear migration path.
+        A minimal static emulation proved it was achievable — and helped unblock the community.
+      </p>
+
+      <hr class="border-slate-800 mb-10" />
+
+      <!-- Body -->
+      <article class="prose-custom">
+
+        <h2>Background: the fork and the registry problem</h2>
+        <p>
+          In August 2023, HashiCorp relicensed Terraform from the Mozilla Public License to the
+          Business Source License (BSL). Shortly after, the OpenTofu project forked Terraform
+          under the Linux Foundation to maintain an open-source path forward.
+        </p>
+        <p>
+          Switching the binary was the easy part. The harder problem was the surrounding
+          <strong>ecosystem of SDKs and tooling</strong> that had grown up around Terraform's
+          release infrastructure. Clients written in Go, Python, and other languages often relied
+          on a predictable registry URL structure to:
+        </p>
+        <ul>
+          <li>List available versions</li>
+          <li>Resolve the latest stable / beta / alpha release</li>
+          <li>Construct download URLs for the correct platform and architecture</li>
+          <li>Verify checksums before installation</li>
+        </ul>
+        <p>
+          When a Go SDK (or a Terragrunt wrapper, or a custom installer) pointed at
+          <code>releases.hashicorp.com/terraform/…</code>, that URL wasn't going anywhere —
+          but OpenTofu releases were landing on GitHub Releases, not on a Terraform-compatible
+          registry. The two formats were different enough to break SDK integrations.
+        </p>
+
+        <h2>The question the community needed answered</h2>
+        <blockquote>
+          <p>
+            "How hard is it to replicate the Terraform release index format for OpenTofu?
+            Is it something the community can realistically maintain?"
+          </p>
+        </blockquote>
+        <p>
+          My goal was to answer that question concretely, not theoretically. The fastest way to
+          do that was to build it.
+        </p>
+
+        <h2>What the Terraform registry format looks like</h2>
+        <p>
+          The HashiCorp release registry is deceptively simple. At its core it is a set of
+          static HTML pages — a root index and per-version child pages — with a predictable
+          URL structure:
+        </p>
+        <pre><code>releases.hashicorp.com/terraform/
+├── index.html           # lists all versions
+├── 1.6.0/
+│   └── index.html       # lists all artifacts for that version
+├── 1.5.7/
+│   └── index.html
+└── …</code></pre>
+        <p>
+          Each child page links to the actual build artifacts — zip files, checksums, and
+          signature files — hosted separately. The SDKs parse these pages (or a JSON variant)
+          to resolve which URL to fetch for a given OS and architecture.
+        </p>
+        <p>
+          That's it. No API authentication, no dynamic server, no database. A glorified
+          directory listing.
+        </p>
+
+        <h2>The implementation</h2>
+        <p>
+          I wrote a small Python script that hit the GitHub Releases API for the
+          <code>opentofu/opentofu</code> repo, iterated every release, and generated the
+          equivalent static HTML structure. The output was a root <code>index.html</code> plus
+          one directory per version — each containing an <code>index.html</code> linking to
+          the corresponding GitHub Release assets.
+        </p>
+        <p>
+          The generated site was hosted on GitHub Pages under this domain, making it a live,
+          inspectable proof-of-concept that anyone could examine and fork.
+        </p>
+        <p>Key observations from the exercise:</p>
+        <ul>
+          <li>
+            The Terraform registry format requires <strong>no dynamic infrastructure</strong>.
+            A static site generator or a simple script is sufficient.
+          </li>
+          <li>
+            GitHub Releases already provides everything needed: version names, asset file names,
+            checksums (<code>SHA256SUMS</code>), and signatures — the registry is just a
+            structured index on top of those.
+          </li>
+          <li>
+            The main compatibility risk is SDKs that hard-code the file naming convention
+            (<code>terraform_X.Y.Z_os_arch.zip</code> vs <code>tofu_X.Y.Z_os_arch.zip</code>).
+            The registry can paper over the URL structure but the binary name change still
+            requires SDK-level changes.
+          </li>
+        </ul>
+
+        <h2>Impact</h2>
+        <p>
+          The working emulation gave SDK authors and community contributors something concrete
+          to point to: a live URL demonstrating the registry format was reproducible and
+          maintainable without any HashiCorp infrastructure. It lowered the perceived barrier
+          to migration and provided a reference implementation to adapt.
+        </p>
+        <p>
+          OpenTofu has since grown a proper release infrastructure of its own. This proof of
+          concept served its purpose — unblocking early adopters while the upstream ecosystem
+          caught up.
+        </p>
+
+        <h2>Takeaways</h2>
+        <ul>
+          <li>
+            <strong>Concrete beats theoretical.</strong> The community didn't need a design doc —
+            it needed a URL to click on. Build the thing.
+          </li>
+          <li>
+            <strong>Understand your dependencies' dependencies.</strong> The issue wasn't
+            "OpenTofu vs Terraform" — it was "what does the SDK use to find the binary?"
+            Tracing that dependency chain is often where the real work is.
+          </li>
+          <li>
+            <strong>Static is underrated.</strong> A surprising amount of "infrastructure"
+            that looks like it needs a server is really just a structured set of files.
+          </li>
+        </ul>
+
+        <hr />
+
+        <p>
+          The original generated registry is still live at
+          <a href="/opentofu/">/opentofu/</a> if you want to browse the structure.
+          The generator script is at
+          <a href="https://github.com/nitrocode/nitrocode.github.io/blob/main/opentofu/main.py" target="_blank" rel="noopener">opentofu/main.py</a>.
+        </p>
+
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-10 px-6 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+      <p class="font-mono">&gt; nitrocode</p>
+      <div class="flex gap-6">
+        <a href="https://github.com/nitrocode" target="_blank" rel="noopener" class="hover:text-slate-300 transition-colors">GitHub</a>
+        <a href="/blog/" class="hover:text-slate-300 transition-colors">Blog</a>
+        <a href="/resume/" class="hover:text-slate-300 transition-colors">Résumé</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
