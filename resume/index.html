@@ -58,11 +58,13 @@
       <section>
         <h2 class="text-xl font-bold mb-4 pb-2 border-b border-slate-800">Summary</h2>
         <p class="text-slate-400 leading-relaxed">
-          Full Stack Engineer with experience across backend services, frontend development,
-          cloud infrastructure, DevSecOps, and system architecture. Proven track record of
-          building and shipping production systems at scale, contributing to open source, and
-          embedding security practices throughout the development lifecycle.
-          Leverages AI tooling to accelerate delivery without sacrificing quality or rigor.
+          Full Stack Engineer with a career spanning QA, test automation, software development,
+          DevOps/SRE, and security engineering — having worked on every side of the wall.
+          That breadth means I understand how decisions made in one discipline ripple into
+          consequences in another, and how to build systems that hold up under scrutiny from
+          all of them. Proven track record of shipping production systems at scale, contributing
+          to open source, and embedding security and quality practices throughout the development
+          lifecycle. Leverages AI tooling to accelerate delivery without sacrificing rigor.
         </p>
       </section>
 
@@ -71,87 +73,252 @@
         <h2 class="text-xl font-bold mb-6 pb-2 border-b border-slate-800">Core skills</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm">
           <div>
-            <h3 class="font-semibold text-slate-200 mb-2">Backend</h3>
+            <h3 class="font-semibold text-slate-200 mb-2">Languages</h3>
             <ul class="space-y-1 text-slate-400">
-              <li>Python, Go, Node.js</li>
-              <li>REST &amp; GraphQL APIs</li>
-              <li>Microservices</li>
-              <li>PostgreSQL, Redis</li>
+              <li>Python (Flask, Falcon, Django)</li>
+              <li>Go</li>
+              <li>Node.js / TypeScript</li>
+              <li>Java (Spring Boot)</li>
+              <li>Bash, Ruby, Kotlin</li>
             </ul>
           </div>
           <div>
             <h3 class="font-semibold text-slate-200 mb-2">Frontend</h3>
             <ul class="space-y-1 text-slate-400">
               <li>React / TypeScript</li>
+              <li>jQuery, Bootstrap</li>
               <li>Tailwind CSS</li>
               <li>Component design</li>
-              <li>Performance</li>
+              <li>D3.js</li>
             </ul>
           </div>
           <div>
             <h3 class="font-semibold text-slate-200 mb-2">Infrastructure</h3>
             <ul class="space-y-1 text-slate-400">
               <li>Terraform / OpenTofu</li>
-              <li>AWS / GCP</li>
-              <li>Docker / Kubernetes</li>
-              <li>CI/CD (GitHub Actions)</li>
+              <li>AWS (EKS, ECS, Lambda, SSO, WAF, GuardDuty)</li>
+              <li>Docker / Kubernetes / Helm</li>
+              <li>Packer, Atlantis, Spacelift</li>
+              <li>GitHub Actions, Buildkite, Jenkins</li>
             </ul>
           </div>
           <div>
             <h3 class="font-semibold text-slate-200 mb-2">Security</h3>
             <ul class="space-y-1 text-slate-400">
-              <li>AppSec / DevSecOps</li>
-              <li>SAST / DAST tooling</li>
-              <li>Threat modeling</li>
-              <li>Policy as code (OPA)</li>
+              <li>OPA / Conftest / Gatekeeper</li>
+              <li>CloudCustodian / SCPs</li>
+              <li>tflint, tfsec / trivy, checkov</li>
+              <li>Burp Suite, SAST / DAST</li>
+              <li>Secrets management</li>
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold text-slate-200 mb-2">Scale</h3>
+            <h3 class="font-semibold text-slate-200 mb-2">QA &amp; Testing</h3>
             <ul class="space-y-1 text-slate-400">
-              <li>System architecture</li>
-              <li>Reliability / SLOs</li>
-              <li>Observability</li>
+              <li>Jasmine / Siesta / mocha</li>
+              <li>Terratest, OPA Rego policies</li>
+              <li>Scapy (packet-level testing)</li>
+              <li>Integration &amp; E2E frameworks</li>
+              <li>Failure mode analysis</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200 mb-2">Observability / SRE</h3>
+            <ul class="space-y-1 text-slate-400">
+              <li>Datadog, ELK stack</li>
+              <li>OpsGenie, PagerDuty</li>
+              <li>ADRs, runbooks</li>
+              <li>SLOs / cost optimization</li>
               <li>Incident response</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="font-semibold text-slate-200 mb-2">AI &amp; Automation</h3>
-            <ul class="space-y-1 text-slate-400">
-              <li>LLM-assisted dev</li>
-              <li>Prompt engineering</li>
-              <li>AI code review</li>
-              <li>Workflow automation</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- Experience placeholder -->
+      <!-- Experience -->
       <section>
         <h2 class="text-xl font-bold mb-6 pb-2 border-b border-slate-800">Experience</h2>
-        <div class="bg-slate-900/50 border border-dashed border-slate-800 rounded-xl p-8 text-center">
-          <p class="text-slate-500 text-sm">
-            Detailed work history available on request or via
-            <a href="https://github.com/nitrocode" target="_blank" rel="noopener" class="text-sky-400 hover:underline">GitHub profile ↗</a>
-          </p>
+        <div class="space-y-10">
+
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+              <h3 class="font-semibold text-slate-100">Geolocation Company — SRE / DevSecOps / DevOps</h3>
+              <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2022 – Present · Remote</span>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
+              <li>Led migration from CloudFront to Cloudflare, reducing costs and latency for clients while maintaining IaC in Terraform.</li>
+              <li>Led EC2-to-EKS migration: coordinated teams, reduced blockers, forecasted capacity, and presented solutions to VPs.</li>
+              <li>Introduced policy-as-code (OPA, Conftest, Gatekeeper) across Terraform and Kubernetes to enforce security standards at scale.</li>
+              <li>Reduced critical and high vulnerabilities org-wide via best-practice docs, training, Cloud Custodian policies, and Service Control Policies (SCPs).</li>
+              <li>Rearchitected Atlantis (Terraform CI/CD) into a scalable, low-maintenance platform, replacing a bespoke internal system.</li>
+              <li>Removed all persistent admin access from production accounts by creating least-privilege roles and migrating users.</li>
+              <li>Introduced Renovatebot for automated dependency updates and ADRs (Architectural Design Records) for org-wide decision tracking.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+              <h3 class="font-semibold text-slate-100">RB Consulting LLC — CEO / Principal Staff Engineer</h3>
+              <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2021 – Present · Remote</span>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
+              <li>Consulted for Fortune 500, midcap, and small companies across IaC, security, and cloud architecture.</li>
+              <li>Managed 100s of open source Terraform modules in terraform-aws-modules and cloudposse.</li>
+              <li>Set up complete AWS environments from scratch: SAML/SSO with Okta, Teleport, Client VPN, Spacelift, Datadog, OpsGenie, WAF, GuardDuty, and delegated IAM roles.</li>
+              <li>Configured and maintained EKS (including Bottlerocket) and ECS Fargate with all Helm releases managed via IRSA roles built in Terraform.</li>
+              <li>Tested Terraform using Terratest and OPA Rego policies; used tflint, tfsec, checkov, and infracost in all pipelines.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+              <h3 class="font-semibold text-slate-100">Security &amp; Adtech Company — SRE / DevSecOps / DevOps</h3>
+              <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2019 – 2021 · Remote</span>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
+              <li>Discovered company secrets and proprietary code in public containers; devised and executed a zero-disruption remediation plan.</li>
+              <li>Led team implementation of a zero-trust solution to replace a costly VPN within a hard 2-month deadline.</li>
+              <li>Worked with IT to migrate employees to AWS SSO with Okta integration.</li>
+              <li>Reduced costs and added governance using Cloud Custodian; installed Atlantis on Fargate for PR-based Terraform automation.</li>
+              <li>Built TypeScript/Node.js services using Hapi; deployed to Kubernetes using Helm charts.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+              <h3 class="font-semibold text-slate-100">DFS / Gaming Company — SRE / DevSecOps / DevOps</h3>
+              <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2018 – 2019 · In Office &amp; Remote</span>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
+              <li>Automated Golden AMI pipeline: Packer builds, multi-region deployment, Rapid7 InsightVM scans, and cross-account tagging via Lambda.</li>
+              <li>Brought Cloud Custodian as a governance tool for cost reduction; used Akamai CDN + AWS WAF to protect against bots and DDoS.</li>
+              <li>Built Python microservices using AWS ALB, Target Groups, and Lambda; monitored via Datadog and ELK stack.</li>
+              <li>Automated deployment data collection (human crons → GAppsScript webhooks + Google Sheets).</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+              <h3 class="font-semibold text-slate-100">Adtech &amp; Sales CMS — DevOps / DevSecOps / Full Stack Engineer</h3>
+              <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2016 – 2018 · In Office &amp; Remote</span>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
+              <li>Architected and built a Node.js app (koa + pm2) in 8 weeks that handles 150M+ req/mo and saved the jobs of the entire team.</li>
+              <li>Uncovered 60+ high-severity vulnerabilities in legacy apps using Burp Suite, w3af, sqlmap, and custom scripts — enabling a Salesforce security approval.</li>
+              <li>Designed a proxy API for Sales in Java Spring Boot with a TypeScript frontend.</li>
+              <li>Containerized apps in Docker/Vagrant, set up Jenkins CI pipelines with SAST, auto-merge, and auto-deploy.</li>
+              <li>Load tested apps with JMeter, blazemeter, wrk, and Apache Bench; gave company-wide TDD and CI/CD presentations.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+              <h3 class="font-semibold text-slate-100">Networking &amp; Firewall Company — Automation / DevSecOps Engineer</h3>
+              <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2013 – 2016 · In Office &amp; Remote</span>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
+              <li>Built an automated test framework for ExtJS frontend code using Jasmine + Siesta, integrating results into CI via Jenkins.</li>
+              <li>Created a remote Python test runner agent; VM automation with Packer + veewee + vSphere + Vagrant.</li>
+              <li>Wrote Scapy packet-manipulation scripts to test IDS/IPS evasion; scripted Heartbleed reproduction scenarios.</li>
+              <li>Won a company award for building a self-correcting Smartsheet using Smartsheet-Data-Tracker.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+              <h3 class="font-semibold text-slate-100">IoT Company — Engineer</h3>
+              <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2011 – 2013 · In Office</span>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
+              <li>Built a self-healing mesh network for marine buoys (GPS + accelerometer + Digi + Arduino) at 1/10th the cost of existing solutions — field-tested on a boat.</li>
+              <li>Programmed custom Arduino boards in C++ for real-time GPS and tidal clearance data.</li>
+              <li>Developed LIDAR analysis functions in Yorick for the USGS EAARL project under a PhD professor; trained USGS personnel via presentations.</li>
+            </ul>
+          </div>
+
         </div>
       </section>
 
       <!-- Open Source -->
       <section>
         <h2 class="text-xl font-bold mb-6 pb-2 border-b border-slate-800">Open source &amp; community</h2>
-        <div class="space-y-5">
-          <div>
-            <div class="flex items-start justify-between gap-4">
-              <h3 class="font-semibold">OpenTofu Release Registry Emulation</h3>
-              <a href="/blog/opentofu-registry/" class="text-sky-400 text-sm hover:underline whitespace-nowrap">Case study →</a>
+        <div class="space-y-4 text-sm">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="font-semibold text-slate-200">OpenTofu Release Registry Emulation</h3>
+              <p class="text-slate-400 mt-1">Built a static emulation of the Terraform version registry to unblock Go and other language SDKs migrating to OpenTofu after the HashiCorp fork.</p>
             </div>
-            <p class="text-slate-400 text-sm mt-1">
-              Built a static emulation of the Terraform version registry to unblock Go and
-              other language SDKs migrating to OpenTofu after the HashiCorp fork.
-            </p>
+            <a href="/blog/opentofu-registry/" class="text-sky-400 hover:underline whitespace-nowrap">Case study →</a>
           </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">HashiCorp Packer</h3>
+            <p class="text-slate-400 mt-1">Contributed <code class="font-mono text-xs bg-slate-800 px-1 rounded">SourceAMICreationDate</code> to the Packer project (Go).</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">Terraform AWS Provider</h3>
+            <p class="text-slate-400 mt-1">Contributed features and fixes to the official Terraform AWS provider.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">terraform-plan-applier</h3>
+            <p class="text-slate-400 mt-1">npm package to apply Terraform plans with configurable criteria.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">pm2-logrotate</h3>
+            <p class="text-slate-400 mt-1">Fixed a gzip issue and added timezone support to the popular pm2 log rotation plugin.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">netmiko</h3>
+            <p class="text-slate-400 mt-1">Added device support for specific network switches to this Paramiko-based SSH library.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">pandoc_resume</h3>
+            <p class="text-slate-400 mt-1">Added mobile-friendly styling and modularized the Makefile.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">iam-policy-json-to-terraform</h3>
+            <p class="text-slate-400 mt-1">Added Homebrew, Chocolatey, and Scoop package manager support.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">Smartsheet-Data-Tracker</h3>
+            <p class="text-slate-400 mt-1">Fixed a spreadsheet sync failure; won a company award for the contribution.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">terraform-aws-modules / cloudposse</h3>
+            <p class="text-slate-400 mt-1">Helped manage and maintain 100s of open source Terraform modules.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Personal Projects -->
+      <section>
+        <h2 class="text-xl font-bold mb-6 pb-2 border-b border-slate-800">Personal projects</h2>
+        <div class="space-y-4 text-sm">
+          <div>
+            <h3 class="font-semibold text-slate-200">Chrome Extension Manager (cem)</h3>
+            <p class="text-slate-400 mt-1">CLI tool to install Chrome browser extensions from the command line.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">curltopy</h3>
+            <p class="text-slate-400 mt-1">Converts browser DevTools network curl commands to Python requests code.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">Dockerized Weather App</h3>
+            <p class="text-slate-400 mt-1">Full-stack weather challenge app built with Django and Docker.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">Questionnaire App</h3>
+            <p class="text-slate-400 mt-1">Challenge app built with Flask and jQuery.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section>
+        <h2 class="text-xl font-bold mb-6 pb-2 border-b border-slate-800">Education</h2>
+        <div class="space-y-3 text-sm text-slate-400">
+          <p><span class="font-semibold text-slate-200">Bachelor of Science</span></p>
+          <p>AWS labs via Qwiklabs and A Cloud Guru</p>
+          <p>Kubernetes and Helm via Katacoda</p>
         </div>
       </section>
 
