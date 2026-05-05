@@ -1,41 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Résumé — nitrocode</title>
-  <meta name="description" content="Résumé of nitrocode — Full Stack Engineer." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: { fontFamily: { mono: ['ui-monospace','SFMono-Regular','Menlo','Monaco','Consolas','monospace'] } } }
-    }
-  </script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-    body { font-family: 'Inter', sans-serif; }
-    @media print {
-      nav, footer, .no-print { display: none !important; }
-      body { background: white; color: black; }
-      .print-page { padding: 1rem; }
-    }
-  </style>
-</head>
-<body class="bg-slate-950 text-slate-100 antialiased">
-
-  <!-- Nav -->
-  <nav class="no-print fixed top-0 inset-x-0 z-50 bg-slate-950/80 backdrop-blur border-b border-slate-800">
-    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-      <a href="/" class="font-mono text-sky-400 font-semibold tracking-tight text-lg">&gt; nitrocode</a>
-      <div class="flex items-center gap-6 text-sm font-medium text-slate-400">
-        <a href="/about/" class="hover:text-slate-100 transition-colors">About</a>
-        <a href="/blog/" class="hover:text-slate-100 transition-colors">Blog</a>
-        <a href="/projects/" class="hover:text-slate-100 transition-colors">Projects</a>
-        <a href="/resume/" class="text-slate-100">Résumé</a>
-        <a href="https://github.com/nitrocode" target="_blank" rel="noopener" class="hover:text-slate-100 transition-colors">GitHub ↗</a>
-      </div>
-    </div>
-  </nav>
+---
+layout: resume
+title: "Résumé — nitrocode"
+description: "Résumé of nitrocode — Full Stack Engineer."
+---
 
   <!-- Header -->
   <header class="no-print pt-32 pb-10 px-6 border-b border-slate-800">
@@ -59,7 +26,7 @@
         <h2 class="text-xl font-bold mb-4 pb-2 border-b border-slate-800">Summary</h2>
         <p class="text-slate-400 leading-relaxed">
           Full Stack Engineer with a career spanning QA, test automation, software development,
-          DevOps/SRE, and security engineering — having worked on every side of the wall.
+          DevOps/SRE, and security engineering, having worked on every side of the wall.
           That breadth means I understand how decisions made in one discipline ripple into
           consequences in another, and how to build systems that hold up under scrutiny from
           all of them. Proven track record of shipping production systems at scale, contributing
@@ -204,7 +171,7 @@
             </div>
             <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
               <li>Architected and built a Node.js app (koa + pm2) in 8 weeks that handles 150M+ req/mo and saved the jobs of the entire team.</li>
-              <li>Uncovered 60+ high-severity vulnerabilities in legacy apps using Burp Suite, w3af, sqlmap, and custom scripts — enabling a Salesforce security approval.</li>
+              <li>Uncovered 60+ high-severity vulnerabilities in legacy apps using Burp Suite, w3af, sqlmap, and custom scripts, enabling a Salesforce security approval.</li>
               <li>Designed a proxy API for Sales in Java Spring Boot with a TypeScript frontend.</li>
               <li>Containerized apps in Docker/Vagrant, set up Jenkins CI pipelines with SAST, auto-merge, and auto-deploy.</li>
               <li>Load tested apps with JMeter, blazemeter, wrk, and Apache Bench; gave company-wide TDD and CI/CD presentations.</li>
@@ -230,7 +197,7 @@
               <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2011 – 2013 · In Office</span>
             </div>
             <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
-              <li>Built a self-healing mesh network for marine buoys (GPS + accelerometer + Digi + Arduino) at 1/10th the cost of existing solutions — field-tested on a boat.</li>
+              <li>Built a self-healing mesh network for marine buoys (GPS + accelerometer + Digi + Arduino) at 1/10th the cost of existing solutions, field-tested on a boat.</li>
               <li>Programmed custom Arduino boards in C++ for real-time GPS and tidal clearance data.</li>
               <li>Developed LIDAR analysis functions in Yorick for the USGS EAARL project under a PhD professor; trained USGS personnel via presentations.</li>
             </ul>
@@ -324,18 +291,3 @@
 
     </div>
   </main>
-
-  <!-- Footer -->
-  <footer class="no-print py-10 px-6 border-t border-slate-800">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
-      <p class="font-mono">&gt; nitrocode</p>
-      <div class="flex gap-6">
-        <a href="https://github.com/nitrocode" target="_blank" rel="noopener" class="hover:text-slate-300 transition-colors">GitHub</a>
-        <a href="/blog/" class="hover:text-slate-300 transition-colors">Blog</a>
-        <a href="/resume/" class="hover:text-slate-300 transition-colors">Résumé</a>
-      </div>
-    </div>
-  </footer>
-
-</body>
-</html>

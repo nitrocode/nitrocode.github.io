@@ -1,59 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>nitrocode — Full Stack Engineer</title>
-  <meta name="description" content="Full Stack Engineer specializing in Backend, Frontend, Infrastructure, Security, and Scale. Building robust systems end-to-end." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50:  '#f0f9ff',
-              100: '#e0f2fe',
-              400: '#38bdf8',
-              500: '#0ea5e9',
-              600: '#0284c7',
-              900: '#0c4a6e',
-            }
-          },
-          fontFamily: {
-            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-    body { font-family: 'Inter', sans-serif; }
-    .gradient-text {
-      background: linear-gradient(135deg, #38bdf8, #818cf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .pillar-card:hover { transform: translateY(-4px); }
-  </style>
-</head>
-<body class="bg-slate-950 text-slate-100 antialiased">
-
-  <!-- Nav -->
-  <nav class="fixed top-0 inset-x-0 z-50 bg-slate-950/80 backdrop-blur border-b border-slate-800">
-    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-      <a href="/" class="font-mono text-brand-400 font-semibold tracking-tight text-lg">&gt; nitrocode</a>
-      <div class="flex items-center gap-6 text-sm font-medium text-slate-400">
-        <a href="/about/" class="hover:text-slate-100 transition-colors">About</a>
-        <a href="/blog/" class="hover:text-slate-100 transition-colors">Blog</a>
-        <a href="/projects/" class="hover:text-slate-100 transition-colors">Projects</a>
-        <a href="/resume/" class="hover:text-slate-100 transition-colors">Résumé</a>
-        <a href="https://github.com/nitrocode" target="_blank" rel="noopener" class="hover:text-slate-100 transition-colors">GitHub ↗</a>
-      </div>
-    </div>
-  </nav>
+---
+layout: default
+title: "nitrocode — Full Stack Engineer"
+description: "Full Stack Engineer specializing in Backend, Frontend, Infrastructure, Security, and Scale. Building robust systems end-to-end."
+---
 
   <!-- Hero -->
   <section class="min-h-screen flex flex-col justify-center px-6 pt-16">
@@ -67,7 +16,7 @@
         QA &middot; Automation &middot; Backend &middot; Frontend &middot; DevOps/SRE &middot; Security
       </p>
       <p class="text-lg text-slate-500 max-w-2xl mb-10 leading-relaxed">
-        I've been on every side of the wall — which means I build systems that hold up under
+        I've been on every side of the wall, which means I build systems that hold up under
         scrutiny from QA, ops, and security alike. I bring that breadth to every layer of
         the stack, from rapid prototyping to production hardening.
       </p>
@@ -88,7 +37,7 @@
   <section id="skills" class="py-24 px-6">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-3xl font-bold mb-3">What I build</h2>
-      <p class="text-slate-400 mb-14 text-lg">Every layer of the stack — from day one.</p>
+      <p class="text-slate-400 mb-14 text-lg">Every layer of the stack, from day one.</p>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
@@ -196,7 +145,7 @@
       <div>
         <h2 class="text-xl font-bold mb-2">AI-augmented engineering</h2>
         <p class="text-slate-400 max-w-2xl">
-          I leverage AI tooling to move faster across the full stack — from rapid prototyping
+          I leverage AI tooling to move faster across the full stack, from rapid prototyping
           and code review to security analysis and infrastructure automation. Not a replacement
           for engineering judgment, but a force multiplier for it.
         </p>
@@ -233,53 +182,25 @@
         <a href="/blog/" class="text-brand-400 hover:text-brand-300 text-sm font-medium transition-colors">All posts →</a>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <a href="/blog/opentofu-registry/"
+        {% for post in site.posts limit:2 %}
+        <a href="{{ post.url }}"
            class="group bg-slate-900 border border-slate-800 hover:border-slate-600 rounded-2xl p-8 transition-all duration-200">
-          <div class="flex items-center gap-2 mb-4">
-            <span class="text-xs font-mono bg-slate-800 text-brand-400 px-2 py-1 rounded">Open Source</span>
-            <span class="text-xs font-mono bg-slate-800 text-brand-400 px-2 py-1 rounded">Infrastructure</span>
+          {% if post.tags %}
+          <div class="flex flex-wrap items-center gap-2 mb-4">
+            {% for tag in post.tags limit:2 %}
+            <span class="text-xs font-mono bg-slate-800 text-brand-400 px-2 py-1 rounded">{{ tag }}</span>
+            {% endfor %}
           </div>
+          {% endif %}
           <h3 class="text-xl font-bold mb-3 group-hover:text-brand-400 transition-colors">
-            Emulating the Terraform Release Registry for OpenTofu
+            {{ post.title }}
           </h3>
           <p class="text-slate-400 text-sm leading-relaxed">
-            After the HashiCorp fork, Go and other language SDKs that depended on the Terraform
-            version registry were left without a migration path. Here's how a minimal static
-            emulation unblocked the community.
-          </p>
-          <p class="mt-4 text-brand-400 text-sm font-medium group-hover:underline">Read case study →</p>
-        </a>
-
-        <a href="/blog/how-this-blog-is-built/"
-           class="group bg-slate-900 border border-slate-800 hover:border-slate-600 rounded-2xl p-8 transition-all duration-200">
-          <div class="flex items-center gap-2 mb-4">
-            <span class="text-xs font-mono bg-slate-800 text-brand-400 px-2 py-1 rounded">Meta</span>
-            <span class="text-xs font-mono bg-slate-800 text-brand-400 px-2 py-1 rounded">GitHub Pages</span>
-          </div>
-          <h3 class="text-xl font-bold mb-3 group-hover:text-brand-400 transition-colors">
-            How This Blog Is Built
-          </h3>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            Plain HTML, Tailwind CSS CDN, and GitHub Pages. No build step, no framework.
-            Here is the full stack and why that was the right call.
+            {{ post.description }}
           </p>
           <p class="mt-4 text-brand-400 text-sm font-medium group-hover:underline">Read post →</p>
         </a>
+        {% endfor %}
       </div>
     </div>
   </section>
-
-  <!-- Footer -->
-  <footer class="py-10 px-6 border-t border-slate-800">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
-      <p class="font-mono">&gt; nitrocode</p>
-      <div class="flex gap-6">
-        <a href="https://github.com/nitrocode" target="_blank" rel="noopener" class="hover:text-slate-300 transition-colors">GitHub</a>
-        <a href="/blog/" class="hover:text-slate-300 transition-colors">Blog</a>
-        <a href="/resume/" class="hover:text-slate-300 transition-colors">Résumé</a>
-      </div>
-    </div>
-  </footer>
-
-</body>
-</html>
