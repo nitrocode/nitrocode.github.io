@@ -1,0 +1,17 @@
+<nav class="{% if page.url contains '/resume' %}no-print {% endif %}fixed top-0 inset-x-0 z-50 bg-slate-950/80 backdrop-blur border-b border-slate-800">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+    <a href="/" class="font-mono text-sky-400 font-semibold tracking-tight text-lg">&gt; nitrocode</a>
+    <div class="flex items-center gap-6 text-sm font-medium text-slate-400">
+      <a href="/about/"
+         class="{% if page.url contains '/about' %}text-slate-100{% else %}hover:text-slate-100 transition-colors{% endif %}">About</a>
+      <a href="/blog/"
+         class="{% if page.url contains '/blog' %}text-slate-100{% else %}hover:text-slate-100 transition-colors{% endif %}">Blog</a>
+      <a href="/projects/"
+         class="{% if page.url contains '/projects' %}text-slate-100{% else %}hover:text-slate-100 transition-colors{% endif %}">Projects</a>
+      <a href="/resume/"
+         class="{% if page.url contains '/resume' %}text-slate-100{% else %}hover:text-slate-100 transition-colors{% endif %}">Résumé</a>
+      <a href="https://github.com/nitrocode" target="_blank" rel="noopener"
+         class="hover:text-slate-100 transition-colors">GitHub ↗</a>
+    </div>
+  </div>
+</nav>

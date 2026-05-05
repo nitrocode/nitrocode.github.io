@@ -1,0 +1,33 @@
+---
+layout: default
+---
+<main class="pt-32 pb-24 px-6">
+  <div class="max-w-3xl mx-auto">
+
+    <nav class="mb-8 text-sm text-slate-500">
+      <a href="/blog/" class="hover:text-sky-400 transition-colors">← Blog</a>
+    </nav>
+
+    {% if page.tags %}
+    <div class="flex flex-wrap gap-2 mb-6">
+      {% for tag in page.tags %}
+      <span class="text-xs font-mono bg-slate-800 text-sky-400 px-2 py-1 rounded">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-6">
+      {{ page.title }}
+    </h1>
+    <p class="text-slate-400 text-lg mb-10 leading-relaxed">
+      {{ page.description }}
+    </p>
+
+    <hr class="border-slate-800 mb-10" />
+
+    <article class="prose-custom">
+      {{ content }}
+    </article>
+
+  </div>
+</main>
