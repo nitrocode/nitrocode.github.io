@@ -1,0 +1,10 @@
+title: nitrocode
+description: Full Stack Engineer specializing in Backend, Frontend, Infrastructure, Security, and Scale.
+url: https://nitrocode.github.io
+
+exclude:
+  - README.md
+  - CLAUDE.md
+  - "opentofu/main.py"
+  - Gemfile
+  - Gemfile.lock
