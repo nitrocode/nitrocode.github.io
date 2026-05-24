@@ -1,0 +1,71 @@
+default_language_version:
+  python: python3
+
+exclude: |
+  (?x)^(
+    \.pre-commit-config\.yaml|
+    CLAUDE\.md|
+    BLOG_POST_TEMPLATE\.md|
+    _site/.*|
+    Gemfile\.lock
+  )$
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+      - id: mixed-line-ending
+        args: [--fix=lf]
+
+  - repo: local
+    hooks:
+      # Prose-focused hooks are markdown-only. The existing hand-written
+      # HTML pages use em dashes intentionally in titles, headings, and
+      # quote attributions; widening scope to all text would flag those.
+      - id: no-em-dash
+        name: em dash detected (use comma, period, or parentheses)
+        entry: '—'
+        language: pygrep
+        types: [markdown]
+
+      - id: no-smart-quotes
+        # Alternation, not a character class. pygrep matches the pattern
+        # against raw file bytes, so [“”‘’] becomes a class of individual
+        # UTF-8 bytes (\xe2, \x80, ...) and false-positives on any other
+        # multi-byte char that shares those bytes (e.g. ↗, └, ⚙️).
+        name: smart quotes detected (use straight quotes)
+        entry: '“|”|‘|’'
+        language: pygrep
+        types: [markdown]
+
+      - id: no-unicode-ellipsis
+        name: unicode ellipsis detected (use three dots)
+        entry: '…'
+        language: pygrep
+        types: [markdown]
+
+      - id: no-ai-filler
+        name: AI filler vocabulary detected
+        entry: '(?i)\b(delve|delving|leverage(s|d|ing)?|seamless(ly)?|robust|comprehensive(ly)?|in conclusion|to summarize|it is worth noting|dive deep(er)?|navigate the (landscape|complexities))\b'
+        language: pygrep
+        types: [markdown]
+
+      - id: no-bold-section-titles
+        name: bolded section title (use a markdown heading instead)
+        entry: '^\*\*[^*\n]+\*\*\s*$'
+        language: pygrep
+        types: [markdown]
+
+      - id: no-bold-callout-prefix
+        name: bolded callout prefix like **Note:** (rewrite as prose)
+        entry: '^\s*\*\*(Note|Tip|Warning|Important|Caution|Info|Remember|Pro tip|Heads up|Key insight):\*\*'
+        language: pygrep
+        types: [markdown]
