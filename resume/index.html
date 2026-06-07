@@ -1,15 +1,22 @@
 ---
 layout: resume
-title: "Résumé — nitrocode"
-description: "Résumé of nitrocode — Full Stack Engineer."
+title: "Résumé, nitrocode"
+description: "Résumé of nitrocode, Full Stack Engineer."
 ---
 
   <!-- Header -->
-  <header class="no-print pt-32 pb-10 px-6 border-b border-slate-800">
-    <div class="max-w-3xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+  <header class="pt-32 pb-10 px-6 border-b border-slate-800">
+    <div class="max-w-3xl mx-auto flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
       <div>
         <p class="font-mono text-sky-400 text-sm mb-2 tracking-widest uppercase">Résumé</p>
-        <h1 class="text-3xl font-extrabold">Full Stack Engineer</h1>
+        <h1 class="text-3xl font-extrabold mb-3">Full Stack Engineer</h1>
+        <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-400">
+          <a href="https://goo.gl/forms/gefEzkdo27xLk0ju2" target="_blank" rel="noopener" class="hover:text-sky-400 transition-colors">Contact</a>
+          <a href="https://www.linkedin.com/in/ronbb/" target="_blank" rel="noopener" class="hover:text-sky-400 transition-colors">LinkedIn</a>
+          <a href="https://github.com/nitrocode" target="_blank" rel="noopener" class="hover:text-sky-400 transition-colors">GitHub</a>
+          <a href="https://stackoverflow.com/users/2965993" target="_blank" rel="noopener" class="hover:text-sky-400 transition-colors">Stack Overflow</a>
+          <a href="https://nitrocode.github.io" target="_blank" rel="noopener" class="hover:text-sky-400 transition-colors">nitrocode.github.io</a>
+        </div>
       </div>
       <button onclick="window.print()"
               class="no-print inline-flex items-center gap-2 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-slate-100 font-medium px-4 py-2 rounded-lg text-sm transition-colors self-start">
@@ -65,14 +72,14 @@ description: "Résumé of nitrocode — Full Stack Engineer."
               <li>Terraform / OpenTofu</li>
               <li>AWS (EKS, ECS, Lambda, SSO, WAF, GuardDuty)</li>
               <li>Docker / Kubernetes / Helm</li>
-              <li>Packer, Atlantis, Spacelift</li>
+              <li>Packer, Atlantis, Atmos, Spacelift</li>
               <li>GitHub Actions, Buildkite, Jenkins</li>
             </ul>
           </div>
           <div>
             <h3 class="font-semibold text-slate-200 mb-2">Security</h3>
             <ul class="space-y-1 text-slate-400">
-              <li>OPA / Conftest / Gatekeeper</li>
+              <li>OPA / Conftest</li>
               <li>CloudCustodian / SCPs</li>
               <li>tflint, tfsec / trivy, checkov</li>
               <li>Burp Suite, SAST / DAST</li>
@@ -80,13 +87,12 @@ description: "Résumé of nitrocode — Full Stack Engineer."
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold text-slate-200 mb-2">QA &amp; Testing</h3>
+            <h3 class="font-semibold text-slate-200 mb-2">SDET</h3>
             <ul class="space-y-1 text-slate-400">
               <li>Jasmine / Siesta / mocha</li>
               <li>Terratest, OPA Rego policies</li>
               <li>Scapy (packet-level testing)</li>
               <li>Integration &amp; E2E frameworks</li>
-              <li>Failure mode analysis</li>
             </ul>
           </div>
           <div>
@@ -109,23 +115,24 @@ description: "Résumé of nitrocode — Full Stack Engineer."
 
           <div>
             <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
-              <h3 class="font-semibold text-slate-100">Geolocation Company — SRE / DevSecOps / DevOps</h3>
+              <h3 class="font-semibold text-slate-100">Geolocation Company, SRE / DevSecOps / DevOps</h3>
               <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2022 – Present · Remote</span>
             </div>
             <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
-              <li>Led migration from CloudFront to Cloudflare, reducing costs and latency for clients while maintaining IaC in Terraform.</li>
-              <li>Led EC2-to-EKS migration: coordinated teams, reduced blockers, forecasted capacity, and presented solutions to VPs.</li>
-              <li>Introduced policy-as-code (OPA, Conftest, Gatekeeper) across Terraform and Kubernetes to enforce security standards at scale.</li>
-              <li>Reduced critical and high vulnerabilities org-wide via best-practice docs, training, Cloud Custodian policies, and Service Control Policies (SCPs).</li>
-              <li>Rearchitected Atlantis (Terraform CI/CD) into a scalable, low-maintenance platform, replacing a bespoke internal system.</li>
-              <li>Removed all persistent admin access from production accounts by creating least-privilege roles and migrating users.</li>
-              <li>Introduced Renovatebot for automated dependency updates and ADRs (Architectural Design Records) for org-wide decision tracking.</li>
+              <li>Introduced a third-party CNAPP and DSPM across the AWS organization and 100k+ resources as a replacement for the expensive native AWS CNAPP stack; achieved net-zero cost while driving critical cloud vulnerabilities from 40 to 0 and high from 76 to 0.</li>
+              <li>Modernized database access for 175 production databases via a zero-trust access proxy, eliminating static credentials and enabling JIT approval with full query audit.</li>
+              <li>Coordinated third-party penetration testing across cloud and API surfaces; identified 50+ undocumented endpoints and drove 100% remediation of critical and high findings.</li>
+              <li>Removed 1,500+ unused IAM roles (roughly 20% of org total), 60TB+ of stale S3 data, and hundreds of unused security groups, EIPs, and other resources from the AWS organization via Cloud Custodian automation; implemented proactive S3 PII monitoring.</li>
+              <li>Authored the org's first formal security policies and ADRs (Architecture Decision Records) standardizing security decisions across infrastructure teams.</li>
+              <li>Rearchitected Atlantis (Terraform CI/CD) into a scalable, low-maintenance platform and introduced cloudposse's Atmos for YAML-based stack abstractions, reducing Terraform sprawl and replacing a bespoke internal system.</li>
+              <li>Introduced policy-as-code (OPA, Conftest) across Terraform and Kubernetes; removed all persistent admin access from production accounts via least-privilege roles.</li>
+              <li>Led CloudFront-to-Cloudflare and EC2-to-EKS migrations; presented capacity and cost forecasts to VPs.</li>
             </ul>
           </div>
 
           <div>
             <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
-              <h3 class="font-semibold text-slate-100">RB Consulting LLC — CEO / Principal Staff Engineer</h3>
+              <h3 class="font-semibold text-slate-100">RB Consulting LLC, CEO / Principal Staff Engineer</h3>
               <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2021 – Present · Remote</span>
             </div>
             <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
@@ -139,7 +146,7 @@ description: "Résumé of nitrocode — Full Stack Engineer."
 
           <div>
             <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
-              <h3 class="font-semibold text-slate-100">Security &amp; Adtech Company — SRE / DevSecOps / DevOps</h3>
+              <h3 class="font-semibold text-slate-100">Security &amp; Adtech Company, SRE / DevSecOps / DevOps</h3>
               <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2019 – 2021 · Remote</span>
             </div>
             <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
@@ -153,7 +160,7 @@ description: "Résumé of nitrocode — Full Stack Engineer."
 
           <div>
             <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
-              <h3 class="font-semibold text-slate-100">DFS / Gaming Company — SRE / DevSecOps / DevOps</h3>
+              <h3 class="font-semibold text-slate-100">DFS / Gaming Company, SRE / DevSecOps / DevOps</h3>
               <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2018 – 2019 · In Office &amp; Remote</span>
             </div>
             <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
@@ -166,7 +173,7 @@ description: "Résumé of nitrocode — Full Stack Engineer."
 
           <div>
             <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
-              <h3 class="font-semibold text-slate-100">Adtech &amp; Sales CMS — DevOps / DevSecOps / Full Stack Engineer</h3>
+              <h3 class="font-semibold text-slate-100">Adtech &amp; Sales CMS, DevOps / DevSecOps / Full Stack Engineer</h3>
               <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2016 – 2018 · In Office &amp; Remote</span>
             </div>
             <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
@@ -180,7 +187,7 @@ description: "Résumé of nitrocode — Full Stack Engineer."
 
           <div>
             <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
-              <h3 class="font-semibold text-slate-100">Networking &amp; Firewall Company — Automation / DevSecOps Engineer</h3>
+              <h3 class="font-semibold text-slate-100">Networking &amp; Firewall Company, Automation / DevSecOps Engineer</h3>
               <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2013 – 2016 · In Office &amp; Remote</span>
             </div>
             <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
@@ -193,7 +200,7 @@ description: "Résumé of nitrocode — Full Stack Engineer."
 
           <div>
             <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
-              <h3 class="font-semibold text-slate-100">IoT Company — Engineer</h3>
+              <h3 class="font-semibold text-slate-100">IoT Company, Engineer</h3>
               <span class="font-mono text-xs text-slate-500 whitespace-nowrap">2011 – 2013 · In Office</span>
             </div>
             <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside">
@@ -210,6 +217,18 @@ description: "Résumé of nitrocode — Full Stack Engineer."
       <section>
         <h2 class="text-xl font-bold mb-6 pb-2 border-b border-slate-800">Open source &amp; community</h2>
         <div class="space-y-4 text-sm">
+          <div>
+            <h3 class="font-semibold text-slate-200">Atlantis (Terraform CI/CD)</h3>
+            <p class="text-slate-400 mt-1">Contributor (150+ commits) to <code class="font-mono text-xs bg-slate-800 px-1 rounded">runatlantis/atlantis</code>, the Terraform pull-request automation server (Go). Long-time adopter and advocate; introduced Atlantis at multiple companies for PR-driven Terraform workflows.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">Cloud Posse (cloudposse, Atmos)</h3>
+            <p class="text-slate-400 mt-1">Substantial contributor (350+ commits) across the cloudposse Terraform ecosystem, including Atmos, their YAML-based Terraform stack orchestration tool. Helped maintain hundreds of open-source modules used widely across the community.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">terraform-aws-modules</h3>
+            <p class="text-slate-400 mt-1">Contributor to the community Terraform AWS module collection, helping maintain modules used across the ecosystem.</p>
+          </div>
           <div class="flex items-start justify-between gap-4">
             <div>
               <h3 class="font-semibold text-slate-200">OpenTofu Release Registry Emulation</h3>
@@ -238,54 +257,17 @@ description: "Résumé of nitrocode — Full Stack Engineer."
             <p class="text-slate-400 mt-1">Added device support for specific network switches to this Paramiko-based SSH library.</p>
           </div>
           <div>
-            <h3 class="font-semibold text-slate-200">pandoc_resume</h3>
-            <p class="text-slate-400 mt-1">Added mobile-friendly styling and modularized the Makefile.</p>
-          </div>
-          <div>
             <h3 class="font-semibold text-slate-200">iam-policy-json-to-terraform</h3>
             <p class="text-slate-400 mt-1">Added Homebrew, Chocolatey, and Scoop package manager support.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-200">pandoc_resume</h3>
+            <p class="text-slate-400 mt-1">Added mobile-friendly styling and modularized the Makefile.</p>
           </div>
           <div>
             <h3 class="font-semibold text-slate-200">Smartsheet-Data-Tracker</h3>
             <p class="text-slate-400 mt-1">Fixed a spreadsheet sync failure; won a company award for the contribution.</p>
           </div>
-          <div>
-            <h3 class="font-semibold text-slate-200">terraform-aws-modules / cloudposse</h3>
-            <p class="text-slate-400 mt-1">Helped manage and maintain 100s of open source Terraform modules.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Personal Projects -->
-      <section>
-        <h2 class="text-xl font-bold mb-6 pb-2 border-b border-slate-800">Personal projects</h2>
-        <div class="space-y-4 text-sm">
-          <div>
-            <h3 class="font-semibold text-slate-200">Chrome Extension Manager (cem)</h3>
-            <p class="text-slate-400 mt-1">CLI tool to install Chrome browser extensions from the command line.</p>
-          </div>
-          <div>
-            <h3 class="font-semibold text-slate-200">curltopy</h3>
-            <p class="text-slate-400 mt-1">Converts browser DevTools network curl commands to Python requests code.</p>
-          </div>
-          <div>
-            <h3 class="font-semibold text-slate-200">Dockerized Weather App</h3>
-            <p class="text-slate-400 mt-1">Full-stack weather challenge app built with Django and Docker.</p>
-          </div>
-          <div>
-            <h3 class="font-semibold text-slate-200">Questionnaire App</h3>
-            <p class="text-slate-400 mt-1">Challenge app built with Flask and jQuery.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Education -->
-      <section>
-        <h2 class="text-xl font-bold mb-6 pb-2 border-b border-slate-800">Education</h2>
-        <div class="space-y-3 text-sm text-slate-400">
-          <p><span class="font-semibold text-slate-200">Bachelor of Science</span></p>
-          <p>AWS labs via Qwiklabs and A Cloud Guru</p>
-          <p>Kubernetes and Helm via Katacoda</p>
         </div>
       </section>
 

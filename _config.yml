@@ -5,6 +5,7 @@ url: https://nitrocode.github.io
 exclude:
   - README.md
   - CLAUDE.md
+  - BLOG_POST_TEMPLATE.md
   - "opentofu/main.py"
   - Gemfile
   - Gemfile.lock
